@@ -87,4 +87,19 @@ public class IndiaCensusAnalyserTest {
 		}
 	}
 
+	/*
+	 * TC 2.2 -Given the States Code CSV file, Check to ensure the Number of Record
+	 * matches.
+	 */
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoaded_ShouldReturnCorrectRecords() {
+		try {
+			IndianCensusAnalyser censusAnalyser = new IndianCensusAnalyser();
+			int numOfRecord = censusAnalyser.loadStateCodeData(IndianCensusAnalyser.STATE_FILE_PATH);
+			Assert.assertEquals(37, numOfRecord);
+		} catch (CensusAnalyserException e) {
+
+		}
+	}
+
 }
