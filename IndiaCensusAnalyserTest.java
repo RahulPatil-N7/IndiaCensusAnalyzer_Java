@@ -88,7 +88,7 @@ public class IndiaCensusAnalyserTest {
 	}
 
 	/*
-	 * TC 2.2 -Given the States Code CSV file, Check to ensure the Number of Record
+	 * TC 2.1 -Given the States Code CSV file, Check to ensure the Number of Record
 	 * matches.
 	 */
 	@Test
@@ -99,6 +99,22 @@ public class IndiaCensusAnalyserTest {
 			Assert.assertEquals(37, numOfRecord);
 		} catch (CensusAnalyserException e) {
 
+		}
+	}
+
+	/*
+	 * TC 2.2 -Given the State Census CSV file incorrect, returns a custom
+	 * exception.
+	 */
+	@Test
+	public void givenIndiaStateCodeData_WithWrongFile_ShouldThrowException() {
+		try {
+			IndianCensusAnalyser censusAnalyser = new IndianCensusAnalyser();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadStateCodeData(WRONG_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
 
