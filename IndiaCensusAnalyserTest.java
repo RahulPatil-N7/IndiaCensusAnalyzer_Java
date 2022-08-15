@@ -8,6 +8,7 @@ public class IndiaCensusAnalyserTest {
 
 	private static final String WRONG_CSV_FILE_PATH = "E:/Rahul Proejcts/";
 	private static final String WRONG_CSV_FILE_TYPE = "E:/Rahul Proejcts/IndiaStateCensusData.txt";
+	private static final String WRONG_STATECSV_FILE_TYPE = "E:/Rahul Proejcts/IndiaStateCode.txt";
 
 	/*
 	 * TC 1.1 -Given the States Census CSV file, Check to ensure the Number of
@@ -113,6 +114,22 @@ public class IndiaCensusAnalyserTest {
 			ExpectedException exceptionRule = ExpectedException.none();
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadStateCodeData(WRONG_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+
+	/*
+	 * TC 2.3 -Given the State Code CSV file with incorrect type, Should throw
+	 * exception.
+	 */
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoadedWithWrongType_ShouldThrowException() {
+		try {
+			IndianCensusAnalyser censusAnalyser = new IndianCensusAnalyser();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadStateCodeData(WRONG_STATECSV_FILE_TYPE);
 		} catch (CensusAnalyserException e) {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
