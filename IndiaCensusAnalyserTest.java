@@ -99,7 +99,7 @@ public class IndiaCensusAnalyserTest {
 			int numOfRecord = censusAnalyser.loadStateCodeData(IndianCensusAnalyser.STATE_FILE_PATH);
 			Assert.assertEquals(37, numOfRecord);
 		} catch (CensusAnalyserException e) {
-
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
 
@@ -146,7 +146,8 @@ public class IndiaCensusAnalyserTest {
 			int numOfRecord = censusAnalyser.loadStateCodeData(IndianCensusAnalyser.STATE_FILE_PATH);
 			Assert.assertEquals(37, numOfRecord);
 		} catch (CensusAnalyserException e) {
-
+			System.out.println("State Code Census CSV file with incorrect Delimiter.");
+			;
 		}
 	}
 
@@ -161,7 +162,7 @@ public class IndiaCensusAnalyserTest {
 			int numOfRecord = censusAnalyser.loadStateCodeData(IndianCensusAnalyser.STATE_FILE_PATH);
 			Assert.assertEquals(37, numOfRecord);
 		} catch (CensusAnalyserException e) {
-
+			System.out.println("State Code Census CSV file with incorrect header.");
 		}
 	}
 
