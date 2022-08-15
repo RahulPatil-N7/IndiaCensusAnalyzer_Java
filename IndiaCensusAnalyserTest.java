@@ -150,4 +150,19 @@ public class IndiaCensusAnalyserTest {
 		}
 	}
 
+	/*
+	 * TC 2.5 -Given the State Code CSV file with incorrect Column Name, Should
+	 * throw exception.
+	 */
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoadedWithWrongColumn_ShouldThrowException() {
+		try {
+			IndianCensusAnalyser censusAnalyser = new IndianCensusAnalyser();
+			int numOfRecord = censusAnalyser.loadStateCodeData(IndianCensusAnalyser.STATE_FILE_PATH);
+			Assert.assertEquals(37, numOfRecord);
+		} catch (CensusAnalyserException e) {
+
+		}
+	}
+
 }
