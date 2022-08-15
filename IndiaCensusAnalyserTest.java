@@ -72,4 +72,19 @@ public class IndiaCensusAnalyserTest {
 		}
 	}
 
+	/*
+	 * TC 1.5 -Given the State Census CSV file with incorrect Column Name, Should
+	 * throw exception.
+	 */
+	@Test
+	public void givenIndiaCensusCSVFile_WhenLoadedWithWrongColumn_ShouldThrowException() {
+		try {
+			IndianCensusAnalyser censusAnalyser = new IndianCensusAnalyser();
+			int numOfRecord = censusAnalyser.loadIndiaCensusData(IndianCensusAnalyser.PATH);
+			Assert.assertEquals(29, numOfRecord);
+		} catch (CensusAnalyserException e) {
+			System.out.println("State Census CSV file with incorrect header.");
+		}
+	}
+
 }
